@@ -62,13 +62,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1000
+  mWidth: 600
   mHeight: 30
   mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 33.333332
+  aspectRatio: 20
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2896672048585193017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.64360964, y: -0.6941679, z: 2.5982318}
+  m_LocalPosition: {x: 0.64360964, y: -1, z: 2.5982318}
   m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
   m_Children:
   - {fileID: 2896672048523229405}
@@ -164,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2896672049272319727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.64360964, y: 0.0836098, z: 2.5982318}
+  m_LocalPosition: {x: 0.16, y: 0.0836098, z: 2.5982318}
   m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
   m_Children: []
   m_Father: {fileID: 1186451472790798823}
@@ -201,12 +201,12 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 1280
-  mHeight: 720
+  mWidth: 1730
+  mHeight: 973
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 0
+  keepAspectRatio: 2
   aspectRatio: 1.7777778
   mType: 0
   mFillDirection: 4
@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 2896672049890851751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
+  m_LocalScale: {x: 0.002083333, y: 0.002083333, z: 0.002083333}
   m_Children:
   - {fileID: 1186451472790798823}
   m_Father: {fileID: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   alwaysOnScreen: 0
   anchorOffset: 0
   renderQueue: 0
-  startingRenderQueue: 3002
+  startingRenderQueue: 3000
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -394,13 +394,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.854902, g: 0.69803923, b: 0.2901961, a: 1}
   mPivot: 4
-  mWidth: 1000
+  mWidth: 600
   mHeight: 35
   mDepth: 2
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 28.571428
+  aspectRatio: 17.142857
   mType: 1
   mFillDirection: 4
   mFillAmount: 1

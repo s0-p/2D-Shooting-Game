@@ -328,7 +328,7 @@ MonoBehaviour:
   alwaysOnScreen: 0
   anchorOffset: 0
   renderQueue: 0
-  startingRenderQueue: 3005
+  startingRenderQueue: 3006
   mAlpha: 1
   mClipping: 3
   mClipRange: {x: 0, y: 0, z: 550, w: 240}
@@ -615,7 +615,7 @@ Transform:
   m_GameObject: {fileID: 7165583979955193038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
+  m_LocalScale: {x: 0.002083333, y: 0.002083333, z: 0.002083333}
   m_Children:
   - {fileID: 4705522738471225956}
   - {fileID: 3177987883660771881}
@@ -658,7 +658,7 @@ MonoBehaviour:
   alwaysOnScreen: 0
   anchorOffset: 0
   renderQueue: 0
-  startingRenderQueue: 3001
+  startingRenderQueue: 3002
   mAlpha: 1
   mClipping: 0
   mClipRange: {x: 0, y: 0, z: 300, w: 200}
@@ -1114,13 +1114,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 0.49019608}
   mPivot: 4
-  mWidth: 1300
-  mHeight: 800
+  mWidth: 700
+  mHeight: 1000
   mDepth: -1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.625
+  aspectRatio: 0.7
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -1145,5 +1145,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1300, y: 800, z: 0}
+  m_Size: {x: 700, y: 1000, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
