@@ -15,6 +15,13 @@ public class GameObjectPool<T> where T : class
         m_createFunc = func;
         Allocation();
     }
+    void Allocation()
+    {
+        for (int i = 0; i < m_count; i++)
+        {
+            m_dataQueue.Enqueue(m_createFunc());
+        }
+    }
     public T Get()
     {
         if (m_dataQueue.Count > 0)
@@ -25,12 +32,6 @@ public class GameObjectPool<T> where T : class
     {
         m_dataQueue.Enqueue(data);
     }
-    void Allocation()
-    {
-        for (int i = 0; i < m_count; i++)
-        {
-            m_dataQueue.Enqueue(m_createFunc());
-        }
-    }
+    
     
 }

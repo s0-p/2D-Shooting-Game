@@ -7,6 +7,8 @@ TagManager:
   - Collider_Top
   - Collider_Left
   - Collider_Right
+  - Collider_Bottom
+  - Monster
   layers:
   - Default
   - TransparentFX
