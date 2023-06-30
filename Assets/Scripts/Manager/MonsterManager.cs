@@ -12,9 +12,9 @@ public enum MonsterType
 }
 public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
 {
-    [SerializeField]
     GameObject[] m_monPrefabs;
     Dictionary<MonsterType, GameObjectPool<MonsterController>> m_monsterPool = new Dictionary<MonsterType, GameObjectPool<MonsterController>>();
+    List<MonsterController> m_monList = new List<MonsterController>();
     Vector2 m_startPos = new Vector2(-2.67f, 6f);
     float posGap = 1.329f;
     // Start is called before the first frame update
@@ -37,12 +37,6 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
         }
         InvokeRepeating("CreateMonsters", 2f, 3f);
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void CreateMonsters()
     {
         MonsterType type;
@@ -64,14 +58,30 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
                     isTry = true;
                 }
             } while (isTry);
-            var mon = m_monsterPool[type].Get();
-            mon.transform.position = m_startPos + Vector2.right * posGap * i;
-            mon.gameObject.SetActive(true);
+            var monster = m_monsterPool[type].Get();
+            monster.transform.position = m_startPos + Vector2.right * posGap * i;
+            monster.gameObject.SetActive(true);
+            m_monList.Add(monster);
         }
     }
     public void RemoveMonster(MonsterController monster)
     {
         monster.gameObject.SetActive(false);
-        m_monsterPool[monster.Type].Set(monster);
+        if (m_monList.Remove(monster))
+            m_monsterPool[monster.Type].Set(monster);
     }
+    public void BombMonsters(float bombMonY)
+    {
+        for (int i = 0; i < m_monList.Count; i++)
+        {
+            if (m_monList[i].transform.position.y == bombMonY)
+            {
+                m_monList[i].gameObject.SetActive(false);
+                m_monsterPool[m_monList[i].Type].Set(m_monList[i]);
+                m_monList[i].SetDie();
+            }
+        }
+        m_monList.RemoveAll(mon => !mon.gameObject.activeSelf);
+    }
+    
 }

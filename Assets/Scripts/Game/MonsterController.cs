@@ -10,10 +10,6 @@ public class MonsterController : MonoBehaviour
     float m_speed = 2f;
     public int Hp { get; set; }
     public MonsterType Type { get; set; }
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
@@ -38,7 +34,20 @@ public class MonsterController : MonoBehaviour
         if (Hp <= 0)
         {
             Hp = 0;
-            MonsterManager.Instance.RemoveMonster(this);
+            if (Type == MonsterType.Bomb)
+            {
+                MonsterManager.Instance.BombMonsters(transform.position.y);
+            }
+            else
+            {
+                MonsterManager.Instance.RemoveMonster(this);
+                SetDie();
+            }
+
         }
+    }
+    public void SetDie()
+    {
+        EffectPool.Instance.CreateEffect(transform.position);
     }
 }

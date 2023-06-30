@@ -9,11 +9,6 @@ public class BulletController : MonoBehaviour
     int m_power = 1;
     [SerializeField]
     PlayerController m_player;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
