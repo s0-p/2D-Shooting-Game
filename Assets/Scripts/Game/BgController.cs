@@ -18,5 +18,6 @@ public class BgController : MonoBehaviour
     void Update()
     {
         m_sprRenderer.material.mainTextureOffset += Vector2.up * m_speed* Time.deltaTime;
+        GameUiManager.Instance.SetFlightScore(m_sprRenderer.material.mainTextureOffset.y);
     }
 }

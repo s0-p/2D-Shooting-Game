@@ -9,6 +9,7 @@ TagManager:
   - Collider_Right
   - Collider_Bottom
   - Monster
+  - GameItem
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Background
-  - 
+  - GameItem
   - 
   - 
   - 

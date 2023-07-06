@@ -43,11 +43,12 @@ public class MonsterController : MonoBehaviour
                 MonsterManager.Instance.RemoveMonster(this);
                 SetDie();
             }
-
         }
     }
     public void SetDie()
     {
         EffectPool.Instance.CreateEffect(transform.position);
+        GameItemManager.Instance.CreateItem(transform.position);
+        GameUiManager.Instance.SetHuntScore((int)Mathf.Pow(2, 6 + (int)Type));
     }
 }
