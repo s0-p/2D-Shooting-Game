@@ -33,16 +33,20 @@ public class GameItem : MonoBehaviour
         switch (m_type)
         {
             case GameItemManager.ItemType.Coin:
+                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_coin);
                 GameUiManager.Instance.SetCoinCount(1);
                 break;
             case GameItemManager.ItemType.Gem_Red:
             case GameItemManager.ItemType.Gem_Green:
             case GameItemManager.ItemType.Gem_Blue:
+                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_gem);
                 GameUiManager.Instance.SetCoinCount((int)m_type * 10);
                 break;
             case GameItemManager.ItemType.Invincible:
+                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_invincible);
                 break;
             case GameItemManager.ItemType.Magnet:
+                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_item);
                 break;
             default:
                 break;

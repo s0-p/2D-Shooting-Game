@@ -47,6 +47,7 @@ public class MonsterController : MonoBehaviour
     }
     public void SetDie()
     {
+        SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.mon_die);
         EffectPool.Instance.CreateEffect(transform.position);
         GameItemManager.Instance.CreateItem(transform.position);
         GameUiManager.Instance.SetHuntScore((int)Mathf.Pow(2, 6 + (int)Type));

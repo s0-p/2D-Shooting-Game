@@ -12,6 +12,7 @@ public class BgController : MonoBehaviour
     void Start()
     {
         m_sprRenderer = GetComponent<SpriteRenderer>();
+        SoundManager.Instance.PlayBGM(SoundManager.AudioClipBGM.dragon_flight);
     }
 
     // Update is called once per frame
