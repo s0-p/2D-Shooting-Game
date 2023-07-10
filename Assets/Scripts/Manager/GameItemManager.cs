@@ -24,7 +24,10 @@ public class GameItemManager : SingletonMonoBehaviour<GameItemManager>
     GameObjectPool<GameItem> m_itemPool;
     [SerializeField]
     Sprite[] m_icons;
-    float[] m_itemTable = { 96.0f, 1.5f, 0.5f, 0.3f, 0.2f, 2f };
+    float[] m_itemTable = { 56.0f, 1.5f, 0.5f, 0.3f, 0.2f, 42f };
+    [SerializeField]
+    PlayerController m_player;
+    public PlayerController GetPlayer { get { return m_player; } }
     // Start is called before the first frame update
     protected override void OnStart()
     {

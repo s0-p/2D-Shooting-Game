@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
     Vector3 m_startPos;
     Vector3 m_prePos;
     bool m_isDrag;
+
+    [Space(10)]
+    [Header("버프 효과")]
+    [SerializeField]
+    GameObject m_fxMagnetObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +35,7 @@ public class PlayerController : MonoBehaviour
             bullet.InitBullet(this);
             return bullet;
         });
+        SetMagnetEffect(false);
         InvokeRepeating("CreateBullet", 2f, 0.15f);
     }
 
@@ -84,5 +90,9 @@ public class PlayerController : MonoBehaviour
     {
         bullet.gameObject.SetActive(false);
         m_bulletPool.Set(bullet);
+    }
+    public void SetMagnetEffect(bool isOn)
+    {
+        m_fxMagnetObj.SetActive(isOn);
     }
 }

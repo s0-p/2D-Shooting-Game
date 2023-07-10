@@ -20,45 +20,63 @@ public class GameItem : MonoBehaviour
     Vector2 m_to;
     float m_height = 1.5f;
     float m_endPosY = -6f;
+
+    bool m_isMagnet;
     void Awake()
     {
         m_camera = Camera.main;
         m_sprRenderer = GetComponent<SpriteRenderer>();
-        m_rotTween = GetComponent<TweenRotation>(); 
+        m_rotTween = GetComponent<TweenRotation>();
     }
-
+    void OnDisable()
+    {
+        StopAllCoroutines();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameItemManager.Instance.RemoveItem(this);
-        switch (m_type)
+        if (collision.CompareTag("Player"))
         {
-            case GameItemManager.ItemType.Coin:
-                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_coin);
-                GameUiManager.Instance.SetCoinCount(1);
-                break;
-            case GameItemManager.ItemType.Gem_Red:
-            case GameItemManager.ItemType.Gem_Green:
-            case GameItemManager.ItemType.Gem_Blue:
-                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_gem);
-                GameUiManager.Instance.SetCoinCount((int)m_type * 10);
-                break;
-            case GameItemManager.ItemType.Invincible:
-                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_invincible);
-                break;
-            case GameItemManager.ItemType.Magnet:
-                SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_item);
-                break;
-            default:
-                break;
+            switch (m_type)
+            {
+                case GameItemManager.ItemType.Coin:
+                    SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_coin);
+                    GameUiManager.Instance.SetCoinCount(1);
+                    break;
+                case GameItemManager.ItemType.Gem_Red:
+                case GameItemManager.ItemType.Gem_Green:
+                case GameItemManager.ItemType.Gem_Blue:
+                    SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_gem);
+                    GameUiManager.Instance.SetCoinCount((int)m_type * 10);
+                    break;
+                case GameItemManager.ItemType.Invincible:
+                    SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_invincible);
+                    break;
+                case GameItemManager.ItemType.Magnet:
+                    SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_item);
+                    BuffManager.Instance.SetBuff(BuffType.Magnet);
+                    break;
+                default:
+                    break;
+            }
+            GameItemManager.Instance.RemoveItem(this);
+        }
+        else if (collision.CompareTag("Magnet"))
+        {
+            if (gameObject.activeSelf)
+            {
+                m_isMagnet = true;
+                StopAllCoroutines();
+                StartCoroutine(Coroutine_MoveToTarget());
+            }        
         }
     }
     public void SetItem(Vector3 pos, GameItemManager.ItemType type, Sprite icon)
     {
+        m_isMagnet = false;
         transform.position = pos;
         m_type = type;
         m_sprRenderer.sprite = icon;
         StartCoroutine(Coroutine_MoveProcess());
-
     }
     IEnumerator Coroutine_MoveProcess()
     {
@@ -104,5 +122,13 @@ public class GameItem : MonoBehaviour
             yield return null;
         }
     }
-    
+    IEnumerator Coroutine_MoveToTarget()
+    {
+        while (true)
+        {
+            var dir = GameItemManager.Instance.GetPlayer.transform.position - transform.position;
+            transform.position += dir.normalized * 10f * Time.deltaTime;
+            yield return null;
+        }
+    }
 }
