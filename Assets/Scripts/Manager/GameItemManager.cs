@@ -24,7 +24,7 @@ public class GameItemManager : SingletonMonoBehaviour<GameItemManager>
     GameObjectPool<GameItem> m_itemPool;
     [SerializeField]
     Sprite[] m_icons;
-    float[] m_itemTable = { 56.0f, 1.5f, 0.5f, 0.3f, 0.2f, 42f };
+    float[] m_itemTable = { 76.0f, 1.5f, 0.5f, 0.3f, 20.2f, 2.5f };
     [SerializeField]
     PlayerController m_player;
     public PlayerController GetPlayer { get { return m_player; } }
@@ -42,9 +42,13 @@ public class GameItemManager : SingletonMonoBehaviour<GameItemManager>
     }
     public void CreateItem(Vector3 pos)
     {
+        ItemType type;
         var item = m_itemPool.Get();
         item.gameObject.SetActive(true);
-        var type = (ItemType)Util.GetPriority(m_itemTable);
+        do
+        {
+            type = (ItemType)Util.GetPriority(m_itemTable);
+        } while (BuffManager.Instance.GetBuff(BuffType.Invincible) && type == ItemType.Invincible);
         item.SetItem(pos,type, m_icons[(int)type]);
     }
     public void RemoveItem(GameItem item)

@@ -6,8 +6,8 @@ using UnityEngine;
 public enum BuffType
 {
     None = -1,
-    Magnet,
     Invincible,
+    Magnet,
     DualShot,
     Max
 }

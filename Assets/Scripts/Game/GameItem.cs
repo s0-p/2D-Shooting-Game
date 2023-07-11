@@ -50,6 +50,7 @@ public class GameItem : MonoBehaviour
                     break;
                 case GameItemManager.ItemType.Invincible:
                     SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_invincible);
+                    BuffManager.Instance.SetBuff(BuffType.Invincible);
                     break;
                 case GameItemManager.ItemType.Magnet:
                     SoundManager.Instance.PlaySFX(SoundManager.AudioClipSFX.get_item);
@@ -108,12 +109,12 @@ public class GameItem : MonoBehaviour
             valueX = m_curveOffsetX.Evaluate(time);
             transform.position = (m_from * (1f - valueX) + m_to * valueX) + Vector2.up * (valueY * m_height);     //??
             var viewPos = m_camera.WorldToViewportPoint(transform.position);
-            if (viewPos.x < 0.01f)
+            if (viewPos.x < 0f)
             {
-                viewPos.x = 0.01f;
+                viewPos.x = 0.05f;
                 transform.position = m_camera.WorldToViewportPoint(viewPos);
             }
-            else if (viewPos.x > 0.95f)
+            else if (viewPos.x > 1f)
             {
                 viewPos.x = 0.95f;
                 transform.position = m_camera.WorldToViewportPoint(viewPos);

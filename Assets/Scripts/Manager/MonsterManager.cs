@@ -17,9 +17,12 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
     List<MonsterController> m_monList = new List<MonsterController>();
     Vector2 m_startPos = new Vector2(-2.67f, 6f);
     float posGap = 1.329f;
+    float m_interval = 5f;
+    public float Scale { get; set; }
     // Start is called before the first frame update
     protected override void OnStart()
     {
+        Scale = 1f;
         m_monPrefabs = Resources.LoadAll<GameObject>("Prefab/Monster");
         foreach (var prefab in m_monPrefabs)
         {
@@ -35,7 +38,7 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
             });
             m_monsterPool.Add(type, pool);
         }
-        InvokeRepeating("CreateMonsters", 2f, 3f);
+        InvokeRepeating("CreateMonsters", 2f, m_interval * Scale);
     }
     void CreateMonsters()
     {
@@ -64,6 +67,12 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
             m_monList.Add(monster);
         }
     }
+    public void ResetCreateMonsters(float scale)
+    {
+        CancelInvoke("CreateMonsters");
+        Scale = scale;
+        InvokeRepeating("CreateMonsters", 0f, m_interval / Scale);
+    }
     public void RemoveMonster(MonsterController monster)
     {
         monster.gameObject.SetActive(false);
@@ -83,5 +92,4 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
         }
         m_monList.RemoveAll(mon => !mon.gameObject.activeSelf);
     }
-    
 }

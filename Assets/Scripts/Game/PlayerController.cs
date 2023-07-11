@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float m_speed = 4f;
     Vector3 m_dir;
-    
+
+    [SerializeField]
+    Animator m_animator;
     Vector3 m_startPos;
     Vector3 m_prePos;
     bool m_isDrag;
@@ -23,10 +25,15 @@ public class PlayerController : MonoBehaviour
     [Header("버프 효과")]
     [SerializeField]
     GameObject m_fxMagnetObj;
+    [SerializeField]
+    GameObject m_fxInvincibleObj;
+    [SerializeField]
+    GameObject m_fxShockwaveObj;
     // Start is called before the first frame update
     void Start()
     {
         m_camera = Camera.main;
+        m_animator = GetComponent<Animator>();
         m_bulletPool = new GameObjectPool<BulletController>(5, () =>
         {
             var obj = Instantiate(m_bulletPrefab);
@@ -36,7 +43,9 @@ public class PlayerController : MonoBehaviour
             return bullet;
         });
         SetMagnetEffect(false);
-        InvokeRepeating("CreateBullet", 2f, 0.15f);
+        SetInvincibleEffect(false);
+        SetShockwaveEffect(false);
+        //InvokeRepeating("CreateBullet", 2f, 0.15f);
     }
 
     // Update is called once per frame
@@ -94,5 +103,23 @@ public class PlayerController : MonoBehaviour
     public void SetMagnetEffect(bool isOn)
     {
         m_fxMagnetObj.SetActive(isOn);
+    }
+    public void SetInvincibleEffect(bool isOn)
+    {
+        m_fxInvincibleObj.SetActive(isOn);
+        if (isOn)
+        {
+            m_animator.Play("Invincible", 0, 0f);
+            CancelInvoke("CreateBullet");
+        }
+        else
+        {
+            m_animator.Play("Idle2", 0, 0f);
+            InvokeRepeating("CreateBullet", 0.1f, 0.15f);
+        }
+    }
+    public void SetShockwaveEffect(bool isOn)
+    {
+        m_fxShockwaveObj.SetActive(isOn);
     }
 }

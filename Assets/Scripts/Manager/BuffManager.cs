@@ -7,9 +7,12 @@ public class BuffManager : SingletonMonoBehaviour<BuffManager>
     [SerializeField]
     PlayerController m_player;
     [SerializeField]
+    BgController m_bgCtrl;
+    [SerializeField]
     List<BuffData> m_buffDataList;
     Dictionary<BuffType, BuffData> m_buffTable = new Dictionary<BuffType, BuffData>();
     Dictionary<BuffType, BuffInfo> m_buffList = new Dictionary<BuffType, BuffInfo>();
+    
     // Start is called before the first frame update
     protected override void OnStart()
     {
@@ -17,12 +20,6 @@ public class BuffManager : SingletonMonoBehaviour<BuffManager>
         {
             m_buffTable.Add((BuffType)i, m_buffDataList[i]);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void SetBuff(BuffType type)
     {
@@ -39,14 +36,27 @@ public class BuffManager : SingletonMonoBehaviour<BuffManager>
             StartCoroutine(Coroutine_BuffProcess(type));
         }
     }
+    public bool GetBuff(BuffType type)
+    {
+        if (m_buffList.ContainsKey(type))
+        {
+            return true;
+        }
+        return false;
+    }
     IEnumerator Coroutine_BuffProcess(BuffType type)
     {
         switch (type)
         {
+            case BuffType.Invincible:
+                m_player.SetInvincibleEffect(true);
+                m_bgCtrl.SetSpeed(6f);
+                CameraShake.Instance.Shake(m_buffList[type].Data.Duration, 0.05f);
+                MonsterManager.Instance.ResetCreateMonsters(6f);
+                m_player.SetShockwaveEffect(false);
+                break;
             case BuffType.Magnet:
                 m_player.SetMagnetEffect(true);
-                break;
-            case BuffType.Invincible:
                 break;
             //case BuffType.DualShot:
             //    break;
@@ -56,14 +66,18 @@ public class BuffManager : SingletonMonoBehaviour<BuffManager>
             var buff = m_buffList[type];
             buff.Time += Time.deltaTime;
             m_buffList[type] = buff;
-            if (buff.Time > buff.Data.Duration)
+            if (buff.Time >= buff.Data.Duration)
             {
                 switch (type)
                 {
+                    case BuffType.Invincible:
+                        m_player.SetInvincibleEffect(false);
+                        m_player.SetShockwaveEffect(true);
+                        m_bgCtrl.SetSpeed(1f);
+                        MonsterManager.Instance.ResetCreateMonsters(1f);
+                        break;
                     case BuffType.Magnet:
                         m_player.SetMagnetEffect(false);
-                        break;
-                    case BuffType.Invincible:
                         break;
                     //case BuffType.DualShot:
                     //    break;

@@ -26,4 +26,8 @@ public class Util
         }
         return -1;
     }
+    public static void SendMessage(GameObject go, string funcName, object param)
+    {
+        go.SendMessage(funcName, param);
+    }
 }
