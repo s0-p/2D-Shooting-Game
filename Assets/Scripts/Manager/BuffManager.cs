@@ -51,7 +51,7 @@ public class BuffManager : SingletonMonoBehaviour<BuffManager>
             case BuffType.Invincible:
                 m_player.SetInvincibleEffect(true);
                 m_bgCtrl.SetSpeed(6f);
-                CameraShake.Instance.Shake(m_buffList[type].Data.Duration, 0.05f);
+                CameraShake.Instance.Shake(m_buffList[type].Data.Duration, 0.07f);
                 MonsterManager.Instance.ResetCreateMonsters(6f);
                 m_player.SetShockwaveEffect(false);
                 break;
