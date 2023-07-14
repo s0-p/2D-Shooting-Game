@@ -14,6 +14,7 @@ public class GameUiManager : SingletonMonoBehaviour<GameUiManager>
     StringBuilder m_sb = new StringBuilder();
 
     [SerializeField]
+    bool m_isPause;
     int m_flightScore;
     int m_huntScore;
     int m_coinCount;
@@ -47,5 +48,10 @@ public class GameUiManager : SingletonMonoBehaviour<GameUiManager>
         m_sb.AppendFormat("{0:n0}", m_coinCount);
         m_coinCountLabel.text = m_sb.ToString();
         m_sb.Clear();
+    }
+    public void SetPause()
+    {
+        m_isPause = m_isPause ? false : true;   //false로 시작해 버튼을 누를때마다 값이 바뀜
+        Time.timeScale = m_isPause ? 0 : 1;
     }
 }
