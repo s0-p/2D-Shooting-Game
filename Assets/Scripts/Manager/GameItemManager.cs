@@ -24,7 +24,7 @@ public class GameItemManager : SingletonMonoBehaviour<GameItemManager>
     GameObjectPool<GameItem> m_itemPool;
     [SerializeField]
     Sprite[] m_icons;
-    float[] m_itemTable = { 76.0f, 1.5f, 0.5f, 0.3f, 20.2f, 2.5f };
+    float[] m_itemTable = { 96.0f, 1.5f, 0.5f, 0.3f, 0.2f, 2.5f };
     [SerializeField]
     PlayerController m_player;
     public PlayerController GetPlayer { get { return m_player; } }

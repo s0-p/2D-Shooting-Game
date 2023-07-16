@@ -92,4 +92,8 @@ public class MonsterManager : SingletonMonoBehaviour<MonsterManager>
         }
         m_monList.RemoveAll(mon => !mon.gameObject.activeSelf);
     }
+    public void CancelCreateMonsters()
+    {
+        CancelInvoke("CreateMonsters");
+    }
 }

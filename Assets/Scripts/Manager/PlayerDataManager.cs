@@ -9,9 +9,13 @@ public class PlayerDataManager : SingletonDontDestroy<PlayerDataManager>
     HeroData[] m_heroDatas;
     [SerializeField]
     PlayerData m_myData;
+    
+    public int BestScore { get { return m_myData.BestScore; } set { m_myData.BestScore = value; } }
+    public int HeroIndex { get { return m_myData.HeroIndex; } set { m_myData.HeroIndex = value; } }
     // Start is called before the first frame update
     protected override void OnStart()
     {
+        //PlayerPrefs.DeleteAll();    //test
         if (!Load())
         {
             m_myData = new PlayerData(m_heroDatas);
@@ -41,5 +45,19 @@ public class PlayerDataManager : SingletonDontDestroy<PlayerDataManager>
         var json = JsonUtility.ToJson(m_myData);    //JsonWriter.Serialize(m_myData);
         PlayerPrefs.SetString("PLAYER_DATA", json);
         PlayerPrefs.Save();
+    }
+    public void IncreaseGold(int gold)
+    {
+        m_myData.GoldOwned += gold;
+        Save();
+    }
+    public bool DecreaseGold(int gold)
+    {
+        if (m_myData.GoldOwned >= gold)
+        {
+            m_myData.GoldOwned -= gold;
+            return true;
+        }
+        return false;
     }
 }

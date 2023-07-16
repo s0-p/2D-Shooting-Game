@@ -385,9 +385,9 @@ MonoBehaviour:
   m_bulletPos: {fileID: 2809254340053275618}
   m_speed: 4
   m_animator: {fileID: 2809254341267896467}
-  m_fxMagnetObj: {fileID: 782276456511153961}
-  m_fxInvincibleObj: {fileID: 2809254340607632046}
-  m_fxShockwaveObj: {fileID: 2809254340923583318}
+  m_fxMagnetObj: {fileID: 3300113293424559340, guid: abe36e05c5da1b345ad74c5472f1cc87, type: 3}
+  m_fxInvincibleObj: {fileID: 9055243247529387360, guid: 15675ac86a7210b4298357a9d42d1362, type: 3}
+  m_fxShockwaveObj: {fileID: 3610672930610431178, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
 --- !u!61 &2809254341267896464
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -490,13 +490,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Shockwave
       objectReference: {fileID: 0}
+    - target: {fileID: 3610672930610431178, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610672930610431181, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610672930610431181, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610672930610431181, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -71500477
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
---- !u!1 &2809254340923583318 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3610672930610431178, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
-  m_PrefabInstance: {fileID: 1506407990748393372}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2809254340923583317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3610672930610431177, guid: a9726712d7346b34f85416c5eb06b251, type: 3}
@@ -553,9 +564,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2724108663826125651, guid: abe36e05c5da1b345ad74c5472f1cc87, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3300113293424559340, guid: abe36e05c5da1b345ad74c5472f1cc87, type: 3}
       propertyPath: m_Name
       value: FX_Magnet
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300113293424559340, guid: abe36e05c5da1b345ad74c5472f1cc87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3300113293424559340, guid: abe36e05c5da1b345ad74c5472f1cc87, type: 3}
       propertyPath: m_TagString
@@ -614,6 +633,10 @@ PrefabInstance:
       value: FX_Invincible
       objectReference: {fileID: 0}
     - target: {fileID: 9055243247529387360, guid: 15675ac86a7210b4298357a9d42d1362, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055243247529387360, guid: 15675ac86a7210b4298357a9d42d1362, type: 3}
       propertyPath: m_TagString
       value: Invincible
       objectReference: {fileID: 0}
@@ -663,11 +686,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15675ac86a7210b4298357a9d42d1362, type: 3}
---- !u!1 &2809254340607632046 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9055243247529387360, guid: 15675ac86a7210b4298357a9d42d1362, type: 3}
-  m_PrefabInstance: {fileID: 6581683413740816334}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2809254340607632045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9055243247529387363, guid: 15675ac86a7210b4298357a9d42d1362, type: 3}

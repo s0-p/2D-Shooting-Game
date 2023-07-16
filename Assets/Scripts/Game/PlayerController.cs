@@ -89,6 +89,17 @@ public class PlayerController : MonoBehaviour
             transform.position = m_camera.ViewportToWorldPoint(viewPos);
         }*/
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Monster"))
+        {
+            gameObject.SetActive(false);
+            CancelInvoke("CreateBullet");
+            MonsterManager.Instance.CancelCreateMonsters();
+            GameUiManager.Instance.Hide();
+            Result.Instance.SetUI();
+        }
+    }
     void CreateBullet()
     {
         var bullet = m_bulletPool.Get();
@@ -107,6 +118,8 @@ public class PlayerController : MonoBehaviour
     public void SetInvincibleEffect(bool isOn)
     {
         m_fxInvincibleObj.SetActive(isOn);
+        print(isOn);
+        print(m_fxInvincibleObj.activeSelf);
         if (isOn)
         {
             m_animator.Play("Invincible", 0, 0f);

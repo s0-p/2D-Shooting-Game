@@ -18,6 +18,10 @@ public class GameUiManager : SingletonMonoBehaviour<GameUiManager>
     int m_flightScore;
     int m_huntScore;
     int m_coinCount;
+
+    public int FlightScore { get { return m_flightScore; } }
+    public int HuntScore { get { return m_huntScore; } }
+    public int CoinCount { get { return m_coinCount; } }
     // Start is called before the first frame update
     protected override void OnStart()
     {
@@ -27,6 +31,14 @@ public class GameUiManager : SingletonMonoBehaviour<GameUiManager>
         SetHuntScore(0);
         m_coinCount = 0;
         SetCoinCount(0);
+    }
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+    }
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
     public void SetFlightScore(float dist)
     {
